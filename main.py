@@ -83,13 +83,13 @@ if __name__ == '__main__':
     i get_author hämtar ni endast vald author via session.query och sedan använder ni lazy loading med relation för att printa böckerna
     """
 
-    author_and_books = get_author_and_books()
+    # author_and_books = get_author_and_books()
 
-    author = get_author()
+    # author = get_author()
 
 
     """
     i reviews_for_book() hämtar ni recensionerna som tillhör en bok. Ni väljer själva om ni använder en explicit join eller inte.
     """
 
-    reviews = reviews_for_book()
+    # reviews = reviews_for_book()
