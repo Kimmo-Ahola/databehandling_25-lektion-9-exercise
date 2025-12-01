@@ -2,7 +2,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship,
 from sqlalchemy import String, Text, ForeignKey, create_engine
 from typing import List
 from seeding import Seeding
-sqlite_url = "sqlite:///demo.db"
+mysql_url = "mysql+pymysql://user:user123@localhost:3306/delete_me_2"
 
 class Base(DeclarativeBase):
     pass
@@ -23,7 +23,7 @@ class Book(Base):
     title: Mapped[str] = mapped_column(String(200))
     
     # Foreign Key to Author
-    
+    author_id: Mapped[int] = mapped_column(ForeignKey("authors.id"))
 
     # Add relationships
     # Many-to-one: Many books belong to one author
@@ -38,8 +38,7 @@ class Review(Base):
     rating: Mapped[int] = mapped_column()
     comment: Mapped[str] = mapped_column(Text)
 
-    # Foreign Key to book
-    
+    # Foreign Key to book look at author_id to find a hint
 
     # Add relationship
     # Many-to-one: Many reviews belong to one book
@@ -67,7 +66,7 @@ def get_reviews_for_book(book_id: int, session: Session):
 
 # Create tables
 if __name__ == '__main__':
-    engine = create_engine(url=sqlite_url)
+    engine = create_engine(url=mysql_url)
 
     My_Session = sessionmaker(engine)
 
