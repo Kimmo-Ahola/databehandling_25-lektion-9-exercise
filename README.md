@@ -5,17 +5,23 @@ Ni har följande ERD som ska implementeras
 
 ## Author
 id: primary key INT
+
 name: varchar(100)
 
 ## Book
 id: primary key INT
+
 title: varchar(200)
+
 author_id: Foreign Key till PK i Author
 
 ## Review
 id: primary key INT
+
 rating: int
+
 comment: Text
+
 book_id: Foreign Key till PK I Book
 
 ## Relationships
