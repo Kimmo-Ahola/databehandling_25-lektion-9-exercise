@@ -2,7 +2,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship,
 from sqlalchemy import String, Text, ForeignKey, create_engine
 from typing import List
 from seeding import Seeding
-mysql_url = "mysql+pymysql://user:user123@localhost:3306/delete_me_2"
+sqlite_url = "sqlite:///demo.db"
 
 class Base(DeclarativeBase):
     pass
@@ -67,7 +67,7 @@ def get_reviews_for_book(book_id: int, session: Session):
 
 # Create tables
 if __name__ == '__main__':
-    engine = create_engine(url=mysql_url)
+    engine = create_engine(url=sqlite_url)
 
     My_Session = sessionmaker(engine)
 

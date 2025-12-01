@@ -1,3 +1,16 @@
+# Installation
+1. Skapa virtuell miljö och aktivera den
+1. pip install -r requirements.txt
+1. kör alembic stamp base
+1. kör alembic upgrade head
+
+Om ni vill köra mysql istället:
+1. alembic stamp base
+1. radera migrationsfilen som finns i versions-mappen
+1. byt ut url till mysql-url istället
+1. kör alembic revision --autogenerate -m "initial"
+1. kör alembic upgrade head
+
 # Övning
 
 Ni har följande ERD som ska implementeras
