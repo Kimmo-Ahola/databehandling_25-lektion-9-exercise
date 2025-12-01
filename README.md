@@ -36,3 +36,12 @@ book_id: Foreign Key till PK I Book
 
 Tänk på vilka relationer ni har mellan tabellerna och implementera dessa.
 OBS! relationship är inte samma sak som Foreign Key även om de är relaterade. De är endast ett smidigare sätt att koppla ihop tabeller och gör det smidigare att hämta data.
+
+
+## Uppgifter
+
+1. Lägg till foreign key i Review-klassen
+2. Kör en migration + update
+3. Lägg till relationships
+4. Implementera seeding-funktionen (se det andra repot för inspiration: https://github.com/Kimmo-Ahola/databehandling_25-lektion-9-relationships)
+5. Implementera funktionerna som står i main.py
