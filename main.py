@@ -45,12 +45,24 @@ class Review(Base):
     # Many-to-one: Many reviews belong to one book
     
 def get_author(id: int, session: Session):
+    """
+    Fetch the author.
+    Display the books using lazy loading with a relation
+    """
     pass
 
-def get_author_and_books(id: int, session: Session):
+def get_books_for_author(author_id: int, session: Session):
+    """
+    Fetch the author and all books for the author.
+    Use joinedload or an explicit .join() query
+    """
     pass
 
 def get_reviews_for_book(book_id: int, session: Session):
+    """
+    Fetch all reviews for a book.
+    Use lazy loading, joinedload or explicit join() query
+    """
     pass
 
 # Create tables
@@ -62,12 +74,6 @@ if __name__ == '__main__':
     with My_Session() as session:
         Seeding.seed_database(session)
 
-
-    """
-    After the seeding is done:
-        Write a query that fetches all books a specific author has written.
-    """
-
     all_authors = session.query(Author).all()
 
     print("Här är alla författare i databasen: ")
@@ -75,21 +81,16 @@ if __name__ == '__main__':
     for author in all_authors:
         print(author)
 
-    choice = input("Vilken författares information vill du se? Ange id: ")
+    user_choice = int(input("Vilken författares information vill du se? Ange id: "))
 
     """
-    i get_author_and_books() hämtar ni endast vald author via session.query och gör en explicit join för att få med böckerna
-
-    i get_author hämtar ni endast vald author via session.query och sedan använder ni lazy loading med relation för att printa böckerna
+    Implementera metoderna nedan.
+    Använd user_choice eller liknande metod för att få ett id.
+    Läs i metoderna vad som ska finnas i dem.
     """
 
     # author_and_books = get_author_and_books()
 
     # author = get_author()
-
-
-    """
-    i reviews_for_book() hämtar ni recensionerna som tillhör en bok. Ni väljer själva om ni använder en explicit join eller inte.
-    """
 
     # reviews = reviews_for_book()
