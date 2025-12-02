@@ -5,7 +5,9 @@ from sqlalchemy.orm import Session, joinedload
 
 
 class AuthorRepository(BaseRepository[Author]):
-    def get_by_id(self, id: int, session: Session, include_deleted: bool = False):
+    def get_by_id(
+        self, id: int, session: Session, include_deleted: bool = False
+    ) -> Author | None:
         try:
             if include_deleted:
                 session.query(Author).where(Author.id == id).one()
@@ -18,8 +20,11 @@ class AuthorRepository(BaseRepository[Author]):
         except:
             print(f"No author with id {id} was found!")
 
-    def get_all(self, session: Session) -> List[Author]:
-        return session.query(Author).where(Author.is_deleted == False).all()
+    def get_all(self, session: Session, include_deleted: bool = False) -> List[Author]:
+        if include_deleted:
+            return session.query(Author).all()
+        else:
+            return session.query(Author).where(Author.is_deleted == False).all()
 
     def get_authors_and_books(self, session: Session) -> List[Author]:
         return (
@@ -28,3 +33,12 @@ class AuthorRepository(BaseRepository[Author]):
             .options(joinedload(Author.books))
             .all()
         )
+
+    def delete(self, entity: Author, session: Session) -> bool:
+        try:
+            session.delete(entity)
+            session.commit()
+            return True
+        except:
+            print("")
+            return False

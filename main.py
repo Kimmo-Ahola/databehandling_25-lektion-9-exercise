@@ -34,5 +34,3 @@ if __name__ == "__main__":
         for author in author_with_books:
             # This is not lazy loaded!
             print(author, author.books)
-
-    # reviews = reviews_for_book()

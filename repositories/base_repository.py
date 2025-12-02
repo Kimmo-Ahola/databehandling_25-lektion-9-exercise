@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from models.base import Base
 from typing import List, Generic, TypeVar
 
-T = TypeVar("T", bound=Base)
+T = TypeVar("T", bound=Base) # This means that we can only use the repository on classes that inherit from Base, ie our database table classes
 
 
 class BaseRepository(ABC, Generic[T]):
@@ -15,4 +15,6 @@ class BaseRepository(ABC, Generic[T]):
     def get_all(self, session: Session) -> List[T]:
         pass
 
-
+    @abstractmethod
+    def delete(self, entity: T, session: Session) -> bool:
+        pass

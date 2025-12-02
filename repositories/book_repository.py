@@ -13,3 +13,11 @@ class BookRepository(BaseRepository[Book]):
 
     def get_all(self, session: Session) -> List[Book]:
         return session.query(Book).all()
+
+    def delete(self, entity: Book, session: Session) -> bool:
+        try:
+            session.delete(entity)
+            session.commit()
+            return True
+        except:
+            return False
