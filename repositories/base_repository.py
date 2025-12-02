@@ -3,10 +3,14 @@ from sqlalchemy.orm import Session
 from models.base import Base
 from typing import List, Generic, TypeVar
 
-T = TypeVar("T", bound=Base) # This means that we can only use the repository on classes that inherit from Base, ie our database table classes
+T = TypeVar(
+    "T", bound=Base
+)  # This means that we can only use the repository on classes that inherit from Base, ie our database table classes
 
 
-class BaseRepository(ABC, Generic[T]):
+class BaseRepository(
+    ABC, Generic[T]
+):  # T means that it is generic. We use it as a template.
     @abstractmethod
     def get_by_id(self, id: int, session: Session) -> T | None:
         pass

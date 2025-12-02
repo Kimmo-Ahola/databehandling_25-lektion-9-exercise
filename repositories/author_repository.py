@@ -40,5 +40,4 @@ class AuthorRepository(BaseRepository[Author]):
             session.commit()
             return True
         except:
-            print("")
             return False

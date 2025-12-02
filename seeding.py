@@ -7,8 +7,8 @@ from models.review import Review
 class Seeding:
 
     @staticmethod
-    def seed_database(session: Session):
-        count = session.query(Author).count()
+    def seed_database(session: Session) -> None:
+        count: int = session.query(Author).count()
 
         if count == 0:
             author = Author(name="JRR Tolkien")
@@ -16,9 +16,19 @@ class Seeding:
 
             author.books = [
                 Book(
-                    title="The hobbit", reviews=[Review(rating=2, comment="Good book!")]
+                    title="The hobbit",
+                    reviews=[
+                        Review(rating=2, comment="Good book!"),
+                        Review(rating=10, comment="I love this book!"),
+                    ],
                 ),
-                Book(title="Lord of the Rings"),
+                Book(
+                    title="Lord of the Rings",
+                    reviews=[
+                        Review(rating=4, comment="Good book!!!"),
+                        Review(rating=7, comment="I love it!"),
+                    ],
+                ),
             ]
             author_2.books = [Book(title="Harry Potter")]
 
