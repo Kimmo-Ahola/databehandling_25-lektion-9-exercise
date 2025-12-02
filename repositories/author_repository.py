@@ -10,7 +10,7 @@ class AuthorRepository(BaseRepository[Author]):
     ) -> Author | None:
         try:
             if include_deleted:
-                session.query(Author).where(Author.id == id).one()
+                return session.query(Author).where(Author.id == id).one()
             else:
                 return (
                     session.query(Author)
