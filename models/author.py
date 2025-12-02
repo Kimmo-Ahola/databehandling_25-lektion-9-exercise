@@ -1,17 +1,22 @@
 from models.base import Base
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String
-from typing import List
+from typing import Any, List
+from models.mixin import SoftDeletionMixin
 
 
-class Author(Base):
+class Author(SoftDeletionMixin, Base):
     __tablename__ = "authors"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(100))
-    is_deleted: Mapped[bool] = mapped_column(default=False)
+
+    def __init__(self, name: str) -> None:
+        super().__init__()
+        self.name = name
+
     # Add relationship
-    # One-to-many: One author can write many books
+    # One-to-many: One author can write many books, so it is a list of books
     books: Mapped[List["Book"]] = relationship("Book", back_populates="author")  # type: ignore
 
     def __repr__(self) -> str:

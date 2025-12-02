@@ -13,7 +13,7 @@ class Review(Base):
     # Foreign Key to book look at author_id to find a hint
     book_id: Mapped[int] = mapped_column(ForeignKey("books.id"))
     # Add relationship
-    # Many-to-one: Many reviews belong to one book
+    # One Review belongs to one book = No List
     book: Mapped["Book"] = relationship("Book", back_populates="reviews")  # type: ignore
 
     def __repr__(self) -> str:

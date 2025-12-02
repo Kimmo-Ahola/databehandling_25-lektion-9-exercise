@@ -14,9 +14,10 @@ class Book(Base):
     author_id: Mapped[int] = mapped_column(ForeignKey("authors.id"))
 
     # Add relationships
-    # Many-to-one: Many books belong to one author
+    # One book belongs to one author = No list
     author: Mapped["Author"] = relationship("Author", back_populates="books")  # type: ignore
-    # One-to-many: One book can have many reviews
+
+    # One book can have many reviews = List
     reviews: Mapped[List["Review"]] = relationship("Review", back_populates="book")  # type: ignore
 
     def __repr__(self) -> str:
