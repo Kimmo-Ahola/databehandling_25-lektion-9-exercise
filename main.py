@@ -1,6 +1,6 @@
 from typing import List
 from models.author import Author
-from seeding import Seeding
+from services.seeding_service import Seeding
 from database.db import My_Session
 from repositories.author_repository import AuthorRepository
 
