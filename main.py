@@ -17,16 +17,19 @@ if __name__ == "__main__":
 
         for author in all_authors:
             print(author)
-
-        user_choice = int(input("Vilken författares information vill du se? Ange id: "))
-
-        author = author_repo.get_by_id(user_choice, session)
-        if author:
-            # lazy loading here!
-            print(author.books)
+        try:
+            user_choice = int(
+                input("Vilken författares information vill du se? Ange id: ")
+            )
+            author = author_repo.get_by_id(user_choice, session)
+            if author:
+                # lazy loading here!
+                print(author.books)
+        except:
+            print("Du måste ange en siffra!")
 
     with My_Session() as session:
-        author_with_books = author_repo.get_author_and_books(session)
+        author_with_books = author_repo.get_authors_and_books(session)
 
         for author in author_with_books:
             # This is not lazy loaded!

@@ -16,14 +16,12 @@ class AuthorRepository(BaseRepository[Author]):
                     .one()
                 )
         except:
-            # add logging
-
-            print("Error occured")
+            print(f"No author with id {id} was found!")
 
     def get_all(self, session: Session) -> List[Author]:
         return session.query(Author).where(Author.is_deleted == False).all()
 
-    def get_author_and_books(self, session: Session) -> List[Author]:
+    def get_authors_and_books(self, session: Session) -> List[Author]:
         return (
             session.query(Author)
             .where(Author.is_deleted == False)
