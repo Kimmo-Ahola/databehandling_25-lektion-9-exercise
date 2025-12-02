@@ -2,7 +2,11 @@ from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
-from main import Base, mysql_url
+from models.base import Base
+from models.author import Author
+from models.book import Book
+from models.review import Review
+from database.db import mysql_url
 
 from alembic import context
 

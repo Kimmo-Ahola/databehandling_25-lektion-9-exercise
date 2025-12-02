@@ -1,0 +1,32 @@
+from typing import List
+from repositories.base_repository import BaseRepository
+from models.author import Author
+from sqlalchemy.orm import Session, joinedload
+
+
+class AuthorRepository(BaseRepository[Author]):
+    def get_by_id(self, id: int, session: Session, include_deleted: bool = False):
+        try:
+            if include_deleted:
+                session.query(Author).where(Author.id == id).one()
+            else:
+                return (
+                    session.query(Author)
+                    .where(Author.id == id, Author.is_deleted == False)
+                    .one()
+                )
+        except:
+            # add logging
+
+            print("Error occured")
+
+    def get_all(self, session: Session) -> List[Author]:
+        return session.query(Author).where(Author.is_deleted == False).all()
+
+    def get_author_and_books(self, session: Session) -> List[Author]:
+        return (
+            session.query(Author)
+            .where(Author.is_deleted == False)
+            .options(joinedload(Author.books))
+            .all()
+        )
